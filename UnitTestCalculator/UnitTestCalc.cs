@@ -40,6 +40,14 @@ namespace UnitTestCalculator
         }
 
         [TestMethod]
+        public void TestToAddUnknownNumbers()
+        {
+            string numbers = "1,2,5,8";
+            int result = StringCalc.Add(numbers);
+            Assert.AreEqual(16, result);
+        }
+
+        [TestMethod]
         public void TestReturnSplitByNewLine()
         {
 
