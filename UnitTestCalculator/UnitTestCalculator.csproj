@@ -53,6 +53,12 @@
     <Compile Include="UnitTestCalc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CalculatorApplication\CalculatorApplication.csproj">
+      <Project>{222C47EB-2B24-41DE-A262-CA5267A0183E}</Project>
+      <Name>CalculatorApplication</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
