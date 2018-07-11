@@ -10,7 +10,7 @@ namespace CalculatorApplication
     {
         List<string> delimeters = new List<string>
                              {
-                                 ","
+                                 ",", "\n"
 
                              };
         public int Add(string numbers)
@@ -21,8 +21,6 @@ namespace CalculatorApplication
                 return 0;
             else
                 ValidNumber= CheckForDelimeters(numbers);
-
-
             return ValidNumber.Sum();
         }
 
