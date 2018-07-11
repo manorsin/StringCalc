@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CalculatorApplication
@@ -20,13 +21,15 @@ namespace CalculatorApplication
             if (string.IsNullOrEmpty(numbers))
                 return 0;
             else
-                ValidNumber= CheckForDelimeters(numbers);
+                numbers= RemoveCustomDelimiter(numbers);
+            ValidNumber = CheckForDelimeters(numbers);
             return ValidNumber.Sum();
         }
 
         public List<int> CheckForDelimeters(string numbers)
         {
             List<int> validIntegers = new List<int>();
+            
             string[] numbs = numbers.Split(delimeters.ToArray(), StringSplitOptions.None);
             for (int i = 0; i < numbs.Length; i++)
             {
@@ -37,5 +40,21 @@ namespace CalculatorApplication
             return validIntegers;
 
         }
+
+        public string RemoveCustomDelimiter(string numbers)
+        {
+            string _delimeter;
+            var arrayStartIndex = Regex.Match(numbers, "\\d").Index;
+            _delimeter = numbers.Substring(0, arrayStartIndex);
+            foreach (char item in _delimeter)
+            {
+                delimeters.Add(item.ToString());
+            }
+           
+            return numbers;
+        }
+
+        
+
     }
 }
