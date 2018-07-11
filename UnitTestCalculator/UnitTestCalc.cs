@@ -60,7 +60,25 @@ namespace UnitTestCalculator
 
 
         }
+        
+        [TestMethod]
+        public void TesthNegativeNumbersWillThrowException()
+        {
+            try
+            {
+                string numbers = "-1,-2";
+                int result = StringCalc.Add(numbers);           
+           
+            }
+            catch (Exception e)
+            {
 
+                Assert.IsTrue(e is Exception);
+            }
+            
+
+            
+        }
 
     }
 }

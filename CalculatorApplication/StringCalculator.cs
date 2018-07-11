@@ -21,8 +21,9 @@ namespace CalculatorApplication
             if (string.IsNullOrEmpty(numbers))
                 return 0;
             else
-                numbers= RemoveCustomDelimiter(numbers);
+              numbers= RemoveCustomDelimiter(numbers);
             ValidNumber = CheckForDelimeters(numbers);
+            
             return ValidNumber.Sum();
         }
 
@@ -34,7 +35,16 @@ namespace CalculatorApplication
             for (int i = 0; i < numbs.Length; i++)
             {
                 int value = 0;
-                if (int.TryParse(numbs[i], out value)) validIntegers.Add(value);
+                if (int.TryParse(numbs[i], out value))
+                {
+                    if (value < 0)
+                    { 
+                           throw new Exception(string.Format("negatives {0} not allowed",
+                                                                      string.Join(",",
+                                                                                  value)));
+                        }
+                    validIntegers.Add(value);
+                }
             }
 
             return validIntegers;
@@ -44,7 +54,8 @@ namespace CalculatorApplication
         public string RemoveCustomDelimiter(string numbers)
         {
             string _delimeter;
-            var arrayStartIndex = Regex.Match(numbers, "\\d").Index;
+            var arrayStartIndex = Regex.Match(numbers, "-\\d").Index;
+            
             _delimeter = numbers.Substring(0, arrayStartIndex);
             foreach (char item in _delimeter)
             {
@@ -55,6 +66,8 @@ namespace CalculatorApplication
         }
 
         
+
+
 
     }
 }
